@@ -3,20 +3,27 @@ const searchFood = () => {
     const searchText = searchField.value ;
     // clear data 
     searchField.value = '';
+    if (searchText == ''){
+        // please write somthing to display 
+    }
+    else{
+  // load data 
+  const url =`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
+  // console.log(url);
+  fetch(url)
+  .then(res => res.json())
+  .then(data => displaySearchResult(data.meals));
 
-    // load data 
-    const url =`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
-    // console.log(url);
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displaySearchResult(data.meals))
-
+    }
 }
 
 const displaySearchResult = meals => {
     const searchResult = document.getElementById('search-result');
     // searchResult.innerHTML = '';
     searchResult.textContent = '';
+    if (meals.length == 0){
+    //   show no result found
+    }  
     meals.forEach(meal => {
         // console.log(meal);
         // console.log(meal);
